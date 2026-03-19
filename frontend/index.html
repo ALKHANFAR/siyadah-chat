@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>سيادة — AI Company OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e17;--bg2:#111827;--card:#1a2235;--inp:#0f1729;--ac:#22d3ee;--acd:rgba(34,211,238,.12);--acg:rgba(34,211,238,.25);--t1:#f1f5f9;--t2:#94a3b8;--t3:#64748b;--ok:#34d399;--err:#f87171;--brd:rgba(148,163,184,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--t1);height:100vh;overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh;position:relative;z-index:1}
+.hdr{padding:16px 24px;border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,14,23,.8)}
+.logo{font-size:24px;font-weight:900;background:linear-gradient(135deg,var(--ac),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-s{font-size:12px;color:var(--t3);font-weight:400}
+.dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.chat{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px}
+.msg{max-width:85%;animation:mi .3s ease-out}
+@keyframes mi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.u{align-self:flex-start}.msg.b{align-self:flex-end}
+.bbl{padding:14px 18px;border-radius:16px;line-height:1.7;font-size:15px;white-space:pre-wrap}
+.msg.u .bbl{background:var(--acd);border:1px solid rgba(34,211,238,.15);border-bottom-right-radius:4px}
+.msg.b .bbl{background:var(--card);border:1px solid var(--brd);border-bottom-left-radius:4px}
+.lbl{font-size:11px;color:var(--t3);margin-bottom:4px;font-weight:500}
+.dc{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:16px;margin-top:8px;font-size:13px}
+.dct{font-size:13px;font-weight:700;color:var(--ac);margin-bottom:10px}
+.dr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--brd)}
+.dr:last-child{border-bottom:none}
+.dk{color:var(--t2)}.dv{color:var(--t1);font-weight:500}
+.sb{padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
+.sb.ok{background:rgba(52,211,153,.15);color:var(--ok)}
+.sb.er{background:rgba(248,113,113,.15);color:var(--err)}
+.sb.en{background:rgba(34,211,238,.15);color:var(--ac)}
+.qa{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.qb{background:var(--inp);border:1px solid var(--brd);color:var(--t2);padding:8px 14px;border-radius:20px;font-size:13px;font-family:'Tajawal',sans-serif;cursor:pointer;transition:all .2s}
+.qb:hover{border-color:var(--ac);color:var(--ac);background:var(--acd)}
+.ia{padding:16px 24px 24px;border-top:1px solid var(--brd);backdrop-filter:blur(20px);background:rgba(10,14,23,.9)}
+.ir{display:flex;gap:10px;align-items:center}
+.ci{flex:1;background:var(--inp);border:1px solid var(--brd);border-radius:14px;padding:14px 18px;font-size:15px;font-family:'Tajawal',sans-serif;color:var(--t1);outline:none;direction:rtl}
+.ci::placeholder{color:var(--t3)}.ci:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acg)}
+.sb2{width:48px;height:48px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--ac),#818cf8);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb2:disabled{opacity:.5;cursor:not-allowed}
+.td{display:flex;gap:4px;padding:14px 18px}
+.tdd{width:6px;height:6px;border-radius:50%;background:var(--t3);animation:tp 1.2s ease-in-out infinite}
+.tdd:nth-child(2){animation-delay:.15s}.tdd:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.wc{text-align:center;padding:60px 20px}
+.wi{font-size:48px;margin-bottom:16px}
+.wt{font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--ac),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.wd{color:var(--t2);font-size:15px;max-width:400px;margin:0 auto 24px;line-height:1.8}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<script type="text/babel">
+const{useState,useRef,useEffect}=React;
+const API='';
+function App(){
+const[msgs,setMsgs]=useState([]);const[inp,setInp]=useState('');const[ld,setLd]=useState(false);const[cn,setCn]=useState(null);const cr=useRef();
+useEffect(()=>{fetch(`${API}/api/health`).then(r=>r.json()).then(d=>setCn(d.status==='connected')).catch(()=>setCn(false))},[]);
+useEffect(()=>{cr.current&&(cr.current.scrollTop=cr.current.scrollHeight)},[msgs,ld]);
+const send=async(t)=>{if(!t.trim())return;setMsgs(p=>[...p,{r:'u',c:t}]);setInp('');setLd(true);try{const r=await fetch(`${API}/api/chat`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t})});const d=await r.json();setMsgs(p=>[...p,{r:'b',c:d.message,d:d.data,t:d.type}])}catch(e){setMsgs(p=>[...p,{r:'b',c:'خطأ: '+e.message,t:'error'}])}finally{setLd(false)}};
+const sub=e=>{e.preventDefault();send(inp)};
+return(<div className="app">
+<div className="hdr"><div><div className="logo">سيادة</div><div className="logo-s">AI Company OS</div></div><div style={{display:'flex',alignItems:'center',gap:8}}><div className="dot" style={{background:cn===true?'var(--ok)':cn===false?'var(--err)':'#fbbf24'}}/><span style={{fontSize:13,color:'var(--t2)'}}>{cn===true?'متصل بـ Activepieces':cn===false?'غير متصل':'جاري...'}</span></div></div>
+<div className="chat" ref={cr}>
+{msgs.length===0&&<div className="wc"><div className="wi">⚡</div><div className="wt">محرك سيادة</div><div className="wd">كل تحرك يعتمد 100% على Activepieces API</div><div className="qa" style={{justifyContent:'center'}}><button className="qb" onClick={()=>send('الحالة')}>🔌 حالة النظام</button><button className="qb" onClick={()=>send('الاتصالات')}>🔗 الاتصالات</button><button className="qb" onClick={()=>send('الفلوات')}>⚡ الفلوات</button><button className="qb" onClick={()=>send('آخر تشغيل')}>📊 آخر تشغيل</button></div></div>}
+{msgs.map((m,i)=><div key={i} className={`msg ${m.r==='u'?'u':'b'}`}><div className="lbl">{m.r==='u'?'أنت':'سيادة'}</div><div className="bbl">{m.c}{m.d&&<DC d={m.d} t={m.t}/>}</div></div>)}
+{ld&&<div className="msg b"><div className="lbl">سيادة</div><div className="bbl"><div className="td"><div className="tdd"/><div className="tdd"/><div className="tdd"/></div></div></div>}
+</div>
+<div className="ia">{msgs.length>0&&<div className="qa" style={{marginBottom:10}}><button className="qb" onClick={()=>send('الفلوات')}>⚡ الفلوات</button><button className="qb" onClick={()=>send('الاتصالات')}>🔗 الاتصالات</button><button className="qb" onClick={()=>send('آخر تشغيل')}>📊 التشغيلات</button></div>}<form onSubmit={sub} className="ir"><input className="ci" value={inp} onChange={e=>setInp(e.target.value)} placeholder="اكتب أمرك..." disabled={ld} autoFocus/><button type="submit" className="sb2" disabled={ld||!inp.trim()}>➤</button></form></div>
+</div>)}
+function DC({d,t}){
+if(!d)return null;
+if(t==='health')return(<div className="dc"><div className="dct">🔌 حالة النظام</div><div className="dr"><span className="dk">الحالة</span><span className={`sb ${d.status==='connected'?'ok':'er'}`}>{d.status}</span></div><div className="dr"><span className="dk">Project</span><span className="dv" style={{fontSize:11,direction:'ltr'}}>{d.project_id}</span></div></div>);
+if(t==='connections')return(<div className="dc"><div className="dct">🔗 الاتصالات</div>{(d.connections||[]).map((c,i)=><div className="dr" key={i}><span className="dk">{c.name||c.pieceName}</span><span className={`sb ${c.status==='ACTIVE'?'ok':'er'}`}>{c.status}</span></div>)}</div>);
+if(t==='flows')return(<div className="dc"><div className="dct">⚡ الفلوات</div>{(d.flows||[]).length===0?<div style={{color:'var(--t3)',padding:8}}>لا يوجد</div>:(d.flows||[]).map((f,i)=><div className="dr" key={i}><span className="dk">{f.displayName}</span><span className={`sb ${f.status==='ENABLED'?'en':''}`}>{f.status}</span></div>)}</div>);
+if(t==='runs')return(<div className="dc"><div className="dct">📊 التشغيلات</div>{(d.runs||[]).length===0?<div style={{color:'var(--t3)',padding:8}}>لا يوجد</div>:(d.runs||[]).map((r,i)=><div className="dr" key={i}><span className="dk" style={{fontSize:11,direction:'ltr'}}>{r.flowId?.slice(0,8)}...</span><span className={`sb ${r.status==='SUCCEEDED'?'ok':'er'}`}>{r.status}</span></div>)}</div>);
+return null}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
